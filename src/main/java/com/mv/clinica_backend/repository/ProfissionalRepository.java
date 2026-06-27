@@ -10,5 +10,5 @@ public interface ProfissionalRepository extends JpaRepository <Profissional, Lon
 
     Profissional findByCrm(String crm);
 
-    List<Profissional> findByEspecialidades(String especialidade);
+    List<Profissional> findByEspecialidade(String especialidade);
 }
