@@ -27,20 +27,20 @@ public class AgendamentoService {
     public Agendamento criar(Long pacienteId, Long profissionalId, LocalDateTime dataHora, String tipoAtendimento){
 
         if (dataHora.isBefore(LocalDateTime.now())){
-            throw new RuntimeException("Não é permitido agendar em data/hora passada");
+            throw new RuntimeException("Não é permitido agendar em data/hora passada!");
         }
 
         Paciente paciente = pacienteRepository.findById(pacienteId)
-                .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Paciente não encontrado!"));
 
         Profissional profissional = profissionalRepository.findById(profissionalId)
-                .orElseThrow(() -> new RuntimeException("Profissional não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Profissional não encontrado!"));
 
         boolean jaTemAgendamento = agendamentoRepository
                 .existsByProfissionalAndDataHora(profissional, dataHora);
 
         if (jaTemAgendamento){
-            throw new RuntimeException("Profissional já possui agendamento neste horário");
+            throw new RuntimeException("Profissional já possui agendamento neste horário!");
         }
 
         Agendamento agendamento = new Agendamento(paciente, profissional, dataHora, tipoAtendimento);
@@ -51,13 +51,13 @@ public class AgendamentoService {
     public List<Agendamento> listar(Long pacienteId, Long profissionalId, StatusAgendamento status){
         if (pacienteId != null){
             Paciente paciente = pacienteRepository.findById(pacienteId)
-                    .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
+                    .orElseThrow(() -> new RuntimeException("Paciente não encontrado!"));
             return agendamentoRepository.findByPaciente(paciente);
         }
 
         if (profissionalId != null){
             Profissional profissional = profissionalRepository.findById(profissionalId)
-                    .orElseThrow(() -> new RuntimeException("Profissional não encontrado"));
+                    .orElseThrow(() -> new RuntimeException("Profissional não encontrado!"));
             return agendamentoRepository.findByProfissional(profissional);
         }
 
