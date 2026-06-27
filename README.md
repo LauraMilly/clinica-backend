@@ -9,6 +9,7 @@ API REST para gerenciamento de agendamentos de consultas clínicas.
 - MySQL
 - Gradle
 - JUnit 5 + Mockito (testes)
+- Swagger/OpenAPI (documentação)
 
 ## Pré-requisitos
 
@@ -43,9 +44,13 @@ spring.datasource.password=
 ./gradlew bootRun
 ```
 
-A API estará disponível em: `http://localhost:8080/api`
+### 4. Documentação Swagger
 
-### 4. Execute os testes
+Com a aplicação rodando, acesse a documentação do swagger:
+
+```http://localhost:8080/api/swagger-ui/index.html```
+
+### 5. Execute os testes
 
 ```bash
 ./gradlew test
