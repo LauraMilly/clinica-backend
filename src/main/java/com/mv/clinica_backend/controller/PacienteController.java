@@ -1,5 +1,7 @@
 package com.mv.clinica_backend.controller;
 
+import com.mv.clinica_backend.dto.PacienteDTO;
+import java.util.stream.Collectors;
 import com.mv.clinica_backend.entity.Paciente;
 import com.mv.clinica_backend.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +17,23 @@ public class PacienteController {
     private PacienteService pacienteService;
 
     @PostMapping
-    public ResponseEntity<Paciente> cadastrar(@RequestBody Paciente paciente) {
+    public ResponseEntity<PacienteDTO> cadastrar(@RequestBody Paciente paciente) {
         Paciente salvo = pacienteService.cadastrar(paciente);
-        return ResponseEntity.status(201).body(salvo);
+        return ResponseEntity.status(201).body(new PacienteDTO(salvo));
     }
 
     @GetMapping
-    public ResponseEntity<List<Paciente>> listarTodos() {
-        List<Paciente> pacientes = pacienteService.listarTodos();
+    public ResponseEntity<List<PacienteDTO>> listarTodos() {
+        List<PacienteDTO> pacientes = pacienteService.listarTodos()
+                .stream()
+                .map(PacienteDTO::new)
+                .collect(Collectors.toList());
         return ResponseEntity.ok(pacientes);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Paciente> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<PacienteDTO> buscarPorId(@PathVariable Long id) {
         Paciente paciente = pacienteService.buscarPorId(id);
-        return ResponseEntity.ok(paciente);
+        return ResponseEntity.ok(new PacienteDTO(paciente));
     }
 }
