@@ -9,7 +9,7 @@ Utilizei **Java 21 com Spring Boot 3.5** por ser o stack principal da MV Sistema
 Optei pelo **MySQL** por ser um banco relacional amplamente utilizado em sistemas de saúde. O projeto também demonstra compatibilidade com **Oracle** (diferencial solicitado), bastando alterar as configurações em `application.properties`.
 
 ### Arquitetura em Camadas
-Adotei o padrão clássico de **4 camadas**:
+Adotei o padrão de **4 camadas**:
 - **Controller**: Recebe e responde requisições HTTP
 - **Service**: Aplica as regras de negócio
 - **Repository**: Acessa o banco de dados via Spring Data JPA
@@ -26,6 +26,12 @@ Implementei um **GlobalExceptionHandler** centralizado que captura todas as exce
 ### CORS
 Configurei o CORS para permitir que o frontend (React) consuma a API sem bloqueios de segurança do navegador.
 
+### Swagger/OpenAPI
+Adicionei documentação interativa dos endpoints via Springdoc OpenAPI, acessível em `http://localhost:8080/api/swagger-ui/index.html`.
+
+### Frontend
+Desenvolvi uma interface web com **React + TypeScript + Tailwind CSS**, consumindo a API REST e permitindo gerenciar pacientes, profissionais e agendamentos de forma visual e intuitiva.
+
 ---
 
 ## O que foi priorizado
@@ -35,15 +41,15 @@ Configurei o CORS para permitir que o frontend (React) consuma a API sem bloquei
 - ✅ Testes automatizados cobrindo as regras principais
 - ✅ Tratamento de erros adequado
 - ✅ DTOs para segurança dos dados
-- ✅ Documentação clara no README
+- ✅ Documentação Swagger dos endpoints
+- ✅ Interface frontend em React + TypeScript + Tailwind
+- ✅ Documentação clara no README e DECISOES
 
 ---
 
 ## O que ficou de fora
 
 - ❌ Autenticação/Autorização (JWT) - não era requisito obrigatório
-- ❌ Documentação Swagger - não deu tempo de implementar
-- ❌ Frontend - está planejado mas não foi requisito obrigatório
 - ❌ Paginação na listagem - simplificado para o escopo do teste
 
 ---
@@ -59,4 +65,4 @@ Utilizei IA como suporte no desenvolvimento, principalmente para:
 
 Todo o código foi revisado, entendido e validado por mim antes de ser commitado. Cada decisão técnica foi compreendida antes de ser aplicada, não apenas copiada.
 
-Os testes foram executados e validados manualmente via Postman, confirmando o funcionamento correto de todos os endpoints e regras de negócio.
+Os testes foram executados e validados manualmente via Postman e pela interface frontend, confirmando o funcionamento correto de todos os endpoints e regras de negócio.
